@@ -19,6 +19,7 @@ class CandidatesController < ApplicationController
             #redirect_to是轉址的指令
         else
             #如果NG
+            render :new
         end
     end
     private #此方法只有此檔案內部使用，所以定義為私有方法
