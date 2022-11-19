@@ -46,6 +46,14 @@ class CandidatesController < ApplicationController
         end
     end
 
+    def destroy
+        @candidate = Candidate.find_by(id: params[:id])
+        @candidate.destroy
+
+        flash[:notice] = "Candidate deleted!"
+        redirect_to '/candidates'
+    end
+
     private #此方法只有此檔案內部使用，所以定義為私有方法
     def candidate_params
         params.require(:candidate).permit(:name, :party, :age, :politics)
