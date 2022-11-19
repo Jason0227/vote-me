@@ -12,6 +12,10 @@ class CandidatesController < ApplicationController
         @candidate = Candidate.new
     end
 
+    def edit
+        @candidate = Candidate.find_by(id: params[:id])
+    end
+
     def create
 
         @candidate = Candidate.new(candidate_params)
@@ -27,6 +31,21 @@ class CandidatesController < ApplicationController
             render :new
         end
     end
+
+    def edit
+        @candidate = Candidate.find_by(id: params[:id])
+    end
+
+    def update
+        @candidate = Candidate.find_by(id: params[:id])
+        if @candidate.update(candidate_params)
+            flash[:notice] = "Candidate updated!"
+            redirect_to '/candidates'
+        else
+            render :edit
+        end
+    end
+
     private #此方法只有此檔案內部使用，所以定義為私有方法
     def candidate_params
         params.require(:candidate).permit(:name, :party, :age, :politics)
