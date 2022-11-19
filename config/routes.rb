@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-
-  resources :candidates
-
-  get '/hello.php', to: 'candidates#index'
+  resources :candidates do
+    member do
+      post :vote
+    end
+  end
 end
