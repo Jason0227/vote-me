@@ -49,6 +49,9 @@ class CandidatesController < ApplicationController
 
         @candidate.vote_logs.create(ip_address: request.remote_ip)
 
+        # send mail
+        VoteMailer.vote_notify('eddie@5xruby.tw').deliver
+
         #@candidate.votes = @candidate.votes + 1
         #@candidate.increment(:votes)
         #@candidate.save
